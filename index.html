@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Steadynet — Study Smarter</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:#f8f8f5;
+    color:#171717;
+    overflow-x:hidden;
+}
+
+:root{
+    --green:#183d2b;
+    --green2:#285c40;
+    --cream:#f8f8f5;
+    --light:#eef3ed;
+    --black:#151515;
+    --muted:#686b67;
+    --border:#dedfd9;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(248,248,245,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.nav{
+    max-width:1180px;
+    margin:auto;
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--black);
+    font-family:"Plus Jakarta Sans";
+    font-weight:800;
+    font-size:22px;
+}
+
+.logo-img{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.logo-img svg{
+    width:25px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:#555;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:var(--green);
+}
+
+.nav-btn{
+    background:var(--green);
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    padding:155px 22px 90px;
+    text-align:center;
+    position:relative;
+}
+
+.hero-bg{
+    position:absolute;
+    width:650px;
+    height:650px;
+    background:radial-gradient(circle,#dceadf 0%,rgba(248,248,245,0) 70%);
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:-1;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:white;
+    border:1px solid var(--border);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--green);
+    margin-bottom:25px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    background:#5aa878;
+    border-radius:50%;
+}
+
+.hero h1{
+    font-family:"Plus Jakarta Sans";
+    font-size:clamp(48px,7vw,86px);
+    line-height:1.02;
+    letter-spacing:-4px;
+    max-width:850px;
+    margin:auto;
+}
+
+.hero h1 span{
+    color:var(--green);
+}
+
+.hero p{
+    max-width:600px;
+    margin:25px auto 30px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.primary{
+    background:var(--green);
+    color:white;
+    padding:15px 24px;
+    border-radius:13px;
+    text-decoration:none;
+    font-weight:700;
+    border:0;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.secondary{
+    background:white;
+    color:#222;
+    border:1px solid var(--border);
+    padding:15px 24px;
+    border-radius:13px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+/* HERO VISUAL */
+
+.hero-card{
+    max-width:980px;
+    margin:65px auto 0;
+    background:white;
+    border:1px solid #dedfd9;
+    border-radius:25px;
+    padding:14px;
+    box-shadow:0 25px 70px rgba(28,50,38,.12);
+}
+
+.dashboard{
+    min-height:390px;
+    border-radius:17px;
+    background:#f1f4ef;
+    display:grid;
+    grid-template-columns:190px 1fr;
+    overflow:hidden;
+    text-align:left;
+}
+
+.side{
+    background:#193d2b;
+    color:white;
+    padding:25px 17px;
+}
+
+.side-logo{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:40px;
+}
+
+.side-item{
+    padding:11px 12px;
+    margin:5px 0;
+    border-radius:9px;
+    font-size:13px;
+    color:#c9d8cf;
+}
+
+.side-item.active{
+    background:rgba(255,255,255,.12);
+    color:white;
+}
+
+.main-dash{
+    padding:28px;
+}
+
+.dash-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.dash-title{
+    font-size:22px;
+    font-weight:800;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#b9c9bd,#6e8d77);
+}
+
+.study-grid{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:15px;
+}
+
+.dash-box{
+    background:white;
+    border:1px solid #e0e3dd;
+    border-radius:15px;
+    padding:20px;
+}
+
+.box-title{
+    font-size:13px;
+    color:#777;
+    margin-bottom:15px;
+}
+
+.flash-demo{
+    background:#edf4ed;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+}
+
+.flash-demo small{
+    color:#708074;
+}
+
+.flash-demo h3{
+    margin:15px 0;
+    font-size:19px;
+}
+
+.progress-bar{
+    height:8px;
+    background:#e1e6e0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:72%;
+    height:100%;
+    background:var(--green);
+    border-radius:20px;
+}
+
+/* TRUST */
+
+.trust{
+    text-align:center;
+    padding:30px 20px 80px;
+}
+
+.trust p{
+    color:#858781;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.trust-row{
+    display:flex;
+    justify-content:center;
+    gap:55px;
+    flex-wrap:wrap;
+    color:#7b807a;
+    font-weight:800;
+    font-size:15px;
+}
+
+/* SECTION */
+
+.section{
+    max-width:1120px;
+    margin:auto;
+    padding:100px 22px;
+}
+
+.section-label{
+    color:var(--green);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:13px;
+}
+
+.section h2{
+    font-family:"Plus Jakarta Sans";
+    font-size:clamp(34px,5vw,52px);
+    letter-spacing:-2px;
+    max-width:700px;
+    line-height:1.08;
+}
+
+.section-sub{
+    color:var(--muted);
+    max-width:620px;
+    margin-top:17px;
+    line-height:1.7;
+}
+
+/* UPLOAD */
+
+.upload-section{
+    background:#183d2b;
+    color:white;
+    border-radius:30px;
+    padding:60px;
+    position:relative;
+    overflow:hidden;
+}
+
+.upload-section:after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border:70px solid rgba(255,255,255,.04);
+    border-radius:50%;
+    right:-100px;
+    top:-120px;
+}
+
+.upload-section h2{
+    color:white;
+}
+
+.upload-section p{
+    color:#c6d3ca;
+}
+
+.upload-box{
+    margin-top:35px;
+    background:rgba(255,255,255,.08);
+    border:1px dashed rgba(255,255,255,.35);
+    border-radius:20px;
+    padding:40px 20px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+}
+
+.upload-box:hover{
+    background:rgba(255,255,255,.12);
+}
+
+.upload-image{
+    width:70px;
+    height:70px;
+    margin:auto;
+    border-radius:20px;
+    background:#e7eee8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.upload-image svg{
+    width:35px;
+    fill:var(--green);
+}
+
+.upload-box h3{
+    margin-top:18px;
+}
+
+.upload-box p{
+    font-size:14px;
+    margin-top:7px;
+}
+
+#fileInput{
+    display:none;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:45px;
+}
+
+.feature{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:25px;
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.06);
+}
+
+.feature-img{
+    width:58px;
+    height:58px;
+    background:#edf3ed;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+}
+
+.feature-img svg{
+    width:28px;
+    height:28px;
+    fill:var(--green);
+}
+
+.feature h3{
+    margin-bottom:9px;
+    font-size:19px;
+}
+
+.feature p{
+    color:var(--muted);
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* DEMO */
+
+.demo{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.demo-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:30px;
+}
+
+.demo-card h3{
+    margin-bottom:20px;
+}
+
+.flashcard{
+    height:230px;
+    background:#eef4ee;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.flashcard:hover{
+    transform:rotateY(3deg);
+}
+
+.flashcard small{
+    color:#78857b;
+}
+
+.flashcard strong{
+    font-size:21px;
+    margin:15px 0;
+}
+
+.flash-answer{
+    display:none;
+    color:var(--green);
+    font-weight:700;
+}
+
+.quiz-question{
+    font-weight:700;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+.answer{
+    width:100%;
+    padding:13px;
+    margin:7px 0;
+    background:#f7f8f5;
+    border:1px solid #ddd;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.answer:hover{
+    border-color:var(--green);
+}
+
+#quizResult{
+    margin-top:12px;
+    font-weight:700;
+}
+
+/* PROGRESS */
+
+.progress-section{
+    background:#edf2ed;
+}
+
+.progress-wrap{
+    max-width:1120px;
+    margin:auto;
+    padding:100px 22px;
+}
+
+.progress-dashboard{
+    margin-top:45px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:17px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #dce2dc;
+    border-radius:18px;
+    padding:25px;
+}
+
+.stat-number{
+    font-family:"Plus Jakarta Sans";
+    font-size:38px;
+    margin:10px 0;
+}
+
+.stat p{
+    color:#737870;
+    font-size:14px;
+}
+
+.learning{
+    grid-column:span 2;
+}
+
+.subject{
+    margin-top:17px;
+}
+
+.subject-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.subject-bar{
+    height:8px;
+    background:#e4e9e3;
+    border-radius:20px;
+}
+
+.subject-fill{
+    height:100%;
+    background:var(--green);
+    border-radius:20px;
+}
+
+/* CTA */
+
+.cta{
+    max-width:1120px;
+    margin:80px auto;
+    padding:75px 25px;
+    background:#183d2b;
+    border-radius:30px;
+    text-align:center;
+    color:white;
+}
+
+.cta h2{
+    font-family:"Plus Jakarta Sans";
+    font-size:clamp(35px,5vw,55px);
+    letter-spacing:-2px;
+}
+
+.cta p{
+    color:#c5d2c8;
+    max-width:550px;
+    margin:15px auto 25px;
+}
+
+.cta .primary{
+    background:white;
+    color:var(--green);
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:35px 22px;
+}
+
+.footer-inner{
+    max-width:1120px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer-inner p{
+    color:#777;
+    font-size:13px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+.footer-links a{
+    color:#666;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nav{
+        height:68px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:125px;
+    }
+
+    .hero h1{
+        letter-spacing:-2.5px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .side{
+        display:none;
+    }
+
+    .study-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        margin-top:40px;
+    }
+
+    .trust-row{
+        gap:25px;
+    }
+
+    .section{
+        padding:70px 18px;
+    }
+
+    .upload-section{
+        padding:35px 20px;
+        border-radius:22px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .demo{
+        grid-template-columns:1fr;
+    }
+
+    .progress-dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .learning{
+        grid-column:span 1;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+<nav class="nav">
+
+<a href="#" class="logo">
+
+<div class="logo-img">
+<svg viewBox="0 0 100 100">
+<path fill="white" d="M50 12c-21 0-38 16-38 36 0 13 7 24 18 30v10c0 4 3 7 7 7h26c4 0 7-3 7-7V78c11-6 18-17 18-30C88 28 71 12 50 12zm-9 66h18v7H41v-7zm9-54c-14 0-25 11-25 25 0 9 5 17 13 21l5 3h14l5-3c8-4 13-12 13-21 0-14-11-25-25-25z"/>
+</svg>
+</div>
+
+Steadynet
+</a>
+
+<div class="nav-links">
+<a href="#features">Features</a>
+<a href="#tools">Study Tools</a>
+<a href="#progress">Progress</a>
+</div>
+
+<a class="nav-btn" href="#start">Start Learning</a>
+
+</nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="start">
+
+<div class="hero-bg"></div>
+
+<div class="badge">
+<span class="dot"></span>
+Your smarter study space
+</div>
+
+<h1>
+Study less.
+<span>Understand more.</span>
+</h1>
+
+<p>
+Turn your notes, PDFs and study material into beautiful
+flashcards, quizzes, summaries and learning tools — all in one place.
+</p>
+
+<div class="hero-buttons">
+<a class="primary" href="#upload">Start Learning →</a>
+<a class="secondary" href="#tools">Explore Tools</a>
+</div>
+
+
+<div class="hero-card">
+
+<div class="dashboard">
+
+<div class="side">
+
+<div class="side-logo">Steadynet</div>
+
+<div class="side-item active">Overview</div>
+<div class="side-item">My Study Sets</div>
+<div class="side-item">Flashcards</div>
+<div class="side-item">Quizzes</div>
+<div class="side-item">Tutor</div>
+<div class="side-item">Progress</div>
+
+</div>
+
+<div class="main-dash">
+
+<div class="dash-top">
+<div class="dash-title">Good evening, learner</div>
+<div class="avatar"></div>
+</div>
+
+<div class="study-grid">
+
+<div class="dash-box">
+
+<div class="box-title">CURRENT STUDY SET</div>
+
+<div class="flash-demo">
+<small>Biology · Flashcards</small>
+
+<h3>What is the powerhouse of the cell?</h3>
+
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+
+<p style="font-size:12px;margin-top:10px;color:#718076;">
+18 of 25 cards mastered
+</p>
+</div>
+
+</div>
+
+<div class="dash-box">
+
+<div class="box-title">YOUR PROGRESS</div>
+
+<h2 style="font-size:35px;">72%</h2>
+
+<p style="font-size:13px;color:#777;margin:7px 0 20px;">
+Mastery this week
+</p>
+
+<div class="progress-bar">
+<div class="progress-fill" style="width:72%;"></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- TRUST -->
+
+<section class="trust">
+
+<p>MADE FOR STUDENTS WHO WANT TO LEARN BETTER</p>
+
+<div class="trust-row">
+<span>SCIENCE</span>
+<span>MATHEMATICS</span>
+<span>ENGLISH</span>
+<span>HISTORY</span>
+<span>LANGUAGES</span>
+</div>
+
+</section>
+
+
+<!-- UPLOAD -->
+
+<section class="section" id="upload">
+
+<div class="upload-section">
+
+<div class="section-label" style="color:#a9c5b2;">
+ONE PLACE FOR EVERYTHING
+</div>
+
+<h2>Bring your study material.</h2>
+
+<p>
+Upload a document and turn it into an interactive study set.
+</p>
+
+<div class="upload-box" onclick="document.getElementById('fileInput').click()">
+
+<input id="fileInput" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.jpg,.png">
+
+<div class="upload-image">
+
+<svg viewBox="0 0 24 24">
+<path d="M19 15v4H5v-4H3v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4h-2zM11 3v9.17L8.41 9.59 7 11l5 5 5-5-1.41-1.41L13 12.17V3h-2z"/>
+</svg>
+
+</div>
+
+<h3>Drop your study material here</h3>
+
+<p>PDF, Word, PowerPoint, image or text</p>
+
+<button class="primary" style="margin-top:20px;">
+Choose File
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="section" id="features">
+
+<div class="section-label">STUDY TOOLS</div>
+
+<h2>Everything you need to learn smarter.</h2>
+
+<p class="section-sub">
+Steadynet brings your most useful study methods together
+so you can spend less time preparing and more time learning.
+</p>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M4 4h16v12H4V4zm0 14h16v2H4v-2zm3-11v6h10V7H7z"/>
+</svg>
+</div>
+
+<h3>Smart Notes</h3>
+
+<p>
+Turn long chapters into clean, easy-to-understand notes and key points.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+</svg>
+</div>
+
+<h3>Flashcards</h3>
+
+<p>
+Practice active recall with simple cards designed to help information stick.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm6-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+</svg>
+</div>
+
+<h3>Smart Quizzes</h3>
+
+<p>
+Test yourself with multiple-choice questions and learn from mistakes.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M12 3C6.48 3 2 6.58 2 11c0 2.39 1.32 4.51 3.4 5.83L5 21l4.15-2.3c.9.2 1.85.3 2.85.3 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
+</svg>
+</div>
+
+<h3>Study Tutor</h3>
+
+<p>
+Ask questions and get simple explanations when a topic feels difficult.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14h18V5c0-1.1-.9-2-2-2zm-7 13H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V6h10v2z"/>
+</svg>
+</div>
+
+<h3>Practice Tests</h3>
+
+<p>
+Prepare with written questions that feel closer to real examinations.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-img">
+<svg viewBox="0 0 24 24">
+<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 17h-2v-2h2v2zm2.07-7.25l-.9.92C13.45 13.4 13 14 13 15h-2v-.5c0-.8.45-1.55 1.17-2.27l1.24-1.26c.37-.36.59-.86.59-1.38a2 2 0 00-4 0H8a4 4 0 018 0c0 .88-.36 1.68-.93 2.16z"/>
+</svg>
+</div>
+
+<h3>Quick Help</h3>
+
+<p>
+Get clear explanations instead of getting stuck on one difficult question.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DEMO -->
+
+<section class="section" id="tools">
+
+<div class="section-label">TRY IT</div>
+
+<h2>Learning should feel interactive.</h2>
+
+<p class="section-sub">
+Try the small Steadynet demo below.
+</p>
+
+
+<div class="demo">
+
+<div class="demo-card">
+
+<h3>Flashcard</h3>
+
+<div class="flashcard" onclick="flipCard()">
+
+<small>SCIENCE</small>
+
+<strong id="flashQuestion">
+What organelle is known as the powerhouse of the cell?
+</strong>
+
+<span class="flash-answer" id="flashAnswer">
+Mitochondria
+</span>
+
+<small style="margin-top:15px;">Tap to flip</small>
+
+</div>
+
+</div>
+
+
+<div class="demo-card">
+
+<h3>Quick Quiz</h3>
+
+<div class="quiz-question">
+Which planet is known as the Red Planet?
+</div>
+
+<button class="answer" onclick="checkAnswer(false)">
+A. Venus
+</button>
+
+<button class="answer" onclick="checkAnswer(true)">
+B. Mars
+</button>
+
+<button class="answer" onclick="checkAnswer(false)">
+C. Jupiter
+</button>
+
+<button class="answer" onclick="checkAnswer(false)">
+D. Mercury
+</button>
+
+<div id="quizResult"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<section class="progress-section" id="progress">
+
+<div class="progress-wrap">
+
+<div class="section-label">YOUR GROWTH</div>
+
+<h2>See your learning progress.</h2>
+
+<p class="section-sub">
+Keep track of what you know, what you're learning,
+and what you should review next.
+</p>
+
+
+<div class="progress-dashboard">
+
+<div class="stat">
+
+<p>Study streak</p>
+
+<div class="stat-number">7</div>
+
+<p>days in a row</p>
+
+</div>
+
+
+<div class="stat">
+
+<p>Questions solved</p>
+
+<div class="stat-number">128</div>
+
+<p>this month</p>
+
+</div>
+
+
+<div class="stat">
+
+<p>Mastery</p>
+
+<div class="stat-number">72%</div>
+
+<p>overall progress</p>
+
+</div>
+
+
+<div class="stat learning">
+
+<p>Subjects</p>
+
+<div class="subject">
+
+<div class="subject-row">
+<span>Science</span>
+<span>82%</span>
+</div>
+
+<div class="subject-bar">
+<div class="subject-fill" style="width:82%;"></div>
+</div>
+
+</div>
+
+
+<div class="subject">
+
+<div class="subject-row">
+<span>Mathematics</span>
+<span>68%</span>
+</div>
+
+<div class="subject-bar">
+<div class="subject-fill" style="width:68%;"></div>
+</div>
+
+</div>
+
+
+<div class="subject">
+
+<div class="subject-row">
+<span>English</span>
+<span>76%</span>
+</div>
+
+<div class="subject-bar">
+<div class="subject-fill" style="width:76%;"></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>Make studying feel easier.</h2>
+
+<p>
+Build your own study space with Steadynet and start
+learning in a smarter way.
+</p>
+
+<a href="#upload" class="primary">
+Start Learning →
+</a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-inner">
+
+<div class
