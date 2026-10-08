@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Welcome to Steadynet</title>
+<title>Steadynet — Let's Start Learning</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 *{
     margin:0;
@@ -16,14 +16,14 @@
 }
 
 body{
-    min-height:100vh;
     font-family:"DM Sans",sans-serif;
-    background:#f6f8f4;
-    color:#17231b;
+    min-height:100vh;
+    background:#f5f7f3;
+    color:#18201b;
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
 /* BACKGROUND */
@@ -31,8 +31,8 @@ body{
 .background{
     position:fixed;
     inset:0;
-    z-index:-1;
     overflow:hidden;
+    pointer-events:none;
 }
 
 .circle{
@@ -42,47 +42,35 @@ body{
 }
 
 .circle.one{
-    width:400px;
-    height:400px;
-    background:#dcebdd;
-    top:-170px;
-    left:-120px;
+    width:420px;
+    height:420px;
+    background:#dce9df;
+    top:-180px;
+    left:-150px;
 }
 
 .circle.two{
     width:350px;
     height:350px;
-    background:#e7eee5;
+    background:#e5eadb;
     right:-130px;
-    bottom:-120px;
-}
-
-.circle.three{
-    width:180px;
-    height:180px;
-    background:#d5e5d8;
-    right:15%;
-    top:10%;
-    opacity:.5;
+    bottom:-130px;
 }
 
 /* MAIN */
 
 .wrapper{
-    width:100%;
-    max-width:1050px;
-    padding:25px;
-}
-
-.card{
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(20px);
+    width:min(1000px,92%);
+    min-height:600px;
+    background:rgba(255,255,255,.88);
     border:1px solid #e0e5df;
-    border-radius:30px;
-    box-shadow:0 25px 80px rgba(30,60,40,.12);
+    border-radius:32px;
+    box-shadow:0 25px 70px rgba(24,61,43,.10);
     display:grid;
     grid-template-columns:1fr 1fr;
     overflow:hidden;
+    position:relative;
+    z-index:2;
 }
 
 /* LEFT */
@@ -90,293 +78,269 @@ body{
 .left{
     background:#183d2b;
     color:white;
-    padding:55px 45px;
+    padding:45px;
     position:relative;
-    overflow:hidden;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-}
-
-.left:before{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    border:70px solid rgba(255,255,255,.045);
-    border-radius:50%;
-    right:-180px;
-    top:-100px;
+    overflow:hidden;
 }
 
 .left:after{
     content:"";
     position:absolute;
-    width:220px;
-    height:220px;
-    border:45px solid rgba(255,255,255,.035);
+    width:400px;
+    height:400px;
+    border:80px solid rgba(255,255,255,.04);
     border-radius:50%;
-    left:-130px;
-    bottom:-80px;
+    right:-230px;
+    bottom:-200px;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:11px;
     font-family:"Plus Jakarta Sans";
     font-size:22px;
     font-weight:800;
-    position:relative;
-    z-index:2;
 }
 
-.logo-icon{
-    width:40px;
-    height:40px;
-    border-radius:13px;
+.logo-mark{
+    width:42px;
+    height:42px;
     background:white;
+    border-radius:13px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-.logo-icon svg{
-    width:27px;
-    height:27px;
-    fill:#183d2b;
+.logo-mark svg{
+    width:28px;
+    height:28px;
 }
 
 .left-content{
     position:relative;
     z-index:2;
-    margin-top:70px;
 }
 
-.left-content h2{
+.left-content .small{
+    color:#aac5b2;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.left-content h1{
     font-family:"Plus Jakarta Sans";
-    font-size:43px;
-    line-height:1.08;
-    letter-spacing:-2px;
-}
-
-.left-content h2 span{
-    color:#a9c8b2;
-}
-
-.left-content p{
-    color:#c5d4ca;
-    line-height:1.7;
-    margin-top:18px;
+    font-size:42px;
+    line-height:1.1;
+    letter-spacing:-1.5px;
     max-width:390px;
 }
 
-.visual{
-    margin-top:40px;
-    width:100%;
-    height:125px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    padding:18px;
-    gap:14px;
+.left-content p{
+    margin-top:18px;
+    color:#cbd8ce;
+    line-height:1.7;
+    max-width:370px;
+}
+
+.learning-visual{
     position:relative;
     z-index:2;
+    margin-top:30px;
 }
 
-.visual-card{
-    background:white;
-    border-radius:14px;
-    height:88px;
-    flex:1;
-    padding:15px;
-    color:#17231b;
+.book{
+    width:150px;
+    height:105px;
+    border-radius:16px 16px 12px 12px;
+    background:#fff;
+    transform:rotate(-5deg);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    position:relative;
 }
 
-.visual-card.small{
-    max-width:100px;
+.book:before{
+    content:"";
+    position:absolute;
+    width:3px;
+    height:75px;
+    background:#dce5dd;
+    left:50%;
+    top:15px;
 }
 
-.visual-title{
-    width:55%;
-    height:8px;
-    border-radius:20px;
-    background:#dbe5dc;
-    margin-bottom:10px;
+.book-line{
+    position:absolute;
+    height:5px;
+    border-radius:5px;
+    background:#dce5dd;
+    left:18px;
+    right:65px;
 }
 
-.visual-line{
-    width:85%;
-    height:6px;
-    border-radius:20px;
-    background:#edf0ec;
-    margin:7px 0;
-}
-
-.visual-progress{
-    margin-top:15px;
-    height:6px;
-    background:#e8ede8;
-    border-radius:20px;
-}
-
-.visual-progress span{
-    display:block;
-    height:100%;
-    width:70%;
-    background:#285c40;
-    border-radius:20px;
-}
+.book-line.one{top:25px}
+.book-line.two{top:40px}
+.book-line.three{top:55px}
 
 /* RIGHT */
 
 .right{
-    padding:55px 50px;
+    padding:45px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
-.step{
-    color:#718077;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    margin-bottom:15px;
-}
-
-.right h1{
+.right h2{
     font-family:"Plus Jakarta Sans";
-    font-size:38px;
-    letter-spacing:-1.5px;
-    line-height:1.1;
+    font-size:30px;
+    letter-spacing:-1px;
 }
 
 .subtitle{
-    color:#737b75;
-    margin-top:12px;
-    line-height:1.6;
-    font-size:15px;
+    color:#707970;
+    margin-top:8px;
+    margin-bottom:30px;
+    line-height:1.5;
 }
 
 /* FORM */
 
-.form{
-    margin-top:32px;
+.form-group{
+    margin-bottom:18px;
 }
 
-label{
+.form-group label{
     display:block;
     font-size:13px;
     font-weight:700;
     margin-bottom:8px;
 }
 
-.input-group{
-    margin-bottom:20px;
-}
-
-input,
-select{
+.form-group input,
+.form-group select{
     width:100%;
-    border:1px solid #dfe4df;
+    height:50px;
+    border:1px solid #dce2dc;
     background:#fafbf9;
-    border-radius:13px;
-    padding:15px;
+    border-radius:12px;
+    padding:0 15px;
     font-family:inherit;
-    font-size:15px;
-    color:#17231b;
+    font-size:14px;
+    color:#18201b;
     outline:none;
     transition:.2s;
 }
 
-input:focus,
-select:focus{
-    border-color:#285c40;
-    box-shadow:0 0 0 3px rgba(40,92,64,.08);
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#47765a;
     background:white;
+    box-shadow:0 0 0 4px rgba(71,118,90,.08);
 }
 
-select{
-    cursor:pointer;
-}
-
-.continue{
+.start-btn{
     width:100%;
+    height:52px;
+    margin-top:7px;
     border:0;
+    border-radius:13px;
     background:#183d2b;
     color:white;
-    padding:16px;
-    border-radius:13px;
     font-family:inherit;
     font-size:15px;
     font-weight:700;
     cursor:pointer;
     transition:.2s;
-    margin-top:4px;
 }
 
-.continue:hover{
-    background:#285c40;
-    transform:translateY(-1px);
+.start-btn:hover{
+    background:#24563b;
+    transform:translateY(-2px);
+}
+
+.start-btn:active{
+    transform:translateY(0);
+}
+
+.error{
+    display:none;
+    color:#b94b4b;
+    background:#fff1f1;
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:12px;
+    margin-bottom:15px;
 }
 
 .note{
     text-align:center;
-    color:#8a918c;
+    color:#8a918b;
     font-size:11px;
-    margin-top:15px;
-}
-
-/* ERROR */
-
-.error{
-    color:#a34842;
-    font-size:12px;
-    margin-top:8px;
-    display:none;
+    margin-top:17px;
 }
 
 /* MOBILE */
 
-@media(max-width:760px){
+@media(max-width:750px){
 
     body{
-        align-items:flex-start;
+        overflow:auto;
+        padding:20px 0;
     }
 
     .wrapper{
-        padding:14px;
-    }
-
-    .card{
         grid-template-columns:1fr;
-        border-radius:23px;
+        min-height:auto;
+        border-radius:25px;
     }
 
     .left{
-        padding:30px 25px;
         min-height:330px;
+        padding:30px;
     }
 
-    .left-content{
-        margin-top:45px;
-    }
-
-    .left-content h2{
+    .left-content h1{
         font-size:32px;
     }
 
-    .visual{
+    .learning-visual{
         display:none;
     }
 
     .right{
-        padding:35px 25px;
+        padding:30px;
     }
 
-    .right h1{
-        font-size:30px;
+    .right h2{
+        font-size:26px;
+    }
+}
+
+@media(max-width:430px){
+
+    .wrapper{
+        width:94%;
+    }
+
+    .left{
+        padding:25px;
+        min-height:300px;
+    }
+
+    .right{
+        padding:25px;
+    }
+
+    .left-content h1{
+        font-size:29px;
     }
 }
 </style>
@@ -387,280 +351,249 @@ select{
 <div class="background">
     <div class="circle one"></div>
     <div class="circle two"></div>
-    <div class="circle three"></div>
 </div>
 
 
 <div class="wrapper">
 
-<div class="card">
+    <!-- LEFT SIDE -->
 
-<!-- LEFT SIDE -->
+    <section class="left">
 
-<section class="left">
+        <div class="logo">
 
-<div class="logo">
+            <div class="logo-mark">
 
-<div class="logo-icon">
-<svg viewBox="0 0 100 100">
-<path d="M50 12c-21 0-38 16-38 36 0 13 7 24 18 30v10c0 4 3 7 7 7h26c4 0 7-3 7-7V78c11-6 18-17 18-30C88 28 71 12 50 12zm-9 66h18v7H41v-7zm9-54c-14 0-25 11-25 25 0 9 5 17 13 21l5 3h14l5-3c8-4 13-12 13-21 0-14-11-25-25-25z"/>
-</svg>
-</div>
+                <svg viewBox="0 0 100 100">
+                    <path
+                        fill="#183d2b"
+                        d="M50 12c-21 0-38 16-38 36
+                        0 13 7 24 18 30v10
+                        c0 4 3 7 7 7h26
+                        c4 0 7-3 7-7V78
+                        c11-6 18-17 18-30
+                        C88 28 71 12 50 12zm-9
+                        66h18v7H41v-7zm9-54
+                        c-14 0-25 11-25 25
+                        0 9 5 17 13 21l5 3h14
+                        l5-3c8-4 13-12 13-21
+                        0-14-11-25-25-25z"
+                    />
+                </svg>
 
-Steadynet
+            </div>
 
-</div>
+            Steadynet
 
-
-<div class="left-content">
-
-<h2>
-A smarter place to
-<span>learn.</span>
-</h2>
-
-<p>
-Your personal study space for notes, flashcards,
-quizzes, practice and more.
-</p>
-
-
-<div class="visual">
-
-<div class="visual-card">
-
-<div class="visual-title"></div>
-
-<div class="visual-line"></div>
-<div class="visual-line"></div>
-
-<div class="visual-progress">
-<span></span>
-</div>
-
-</div>
-
-<div class="visual-card small">
-
-<div class="visual-title" style="width:70%;"></div>
-
-<div class="visual-line"></div>
-<div class="visual-line" style="width:65%;"></div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+        </div>
 
 
-<!-- RIGHT SIDE -->
+        <div class="left-content">
 
-<section class="right">
+            <div class="small">
+                Your learning space
+            </div>
 
-<div class="step">
-GET STARTED · 01
-</div>
+            <h1>
+                Learn something new every day.
+            </h1>
 
-<h1>
-Welcome to Steadynet.
-</h1>
+            <p>
+                Study smarter, practise more, and keep
+                your progress in one simple place.
+            </p>
 
-<p class="subtitle">
-Let's personalize your learning experience.
-Tell us a little about yourself.
-</p>
+            <div class="learning-visual">
 
+                <div class="book">
 
-<form class="form" id="welcomeForm">
+                    <div class="book-line one"></div>
+                    <div class="book-line two"></div>
+                    <div class="book-line three"></div>
 
-<!-- NAME -->
+                </div>
 
-<div class="input-group">
+            </div>
 
-<label for="name">
-What's your name?
-</label>
+        </div>
 
-<input
-    type="text"
-    id="name"
-    placeholder="Enter your name"
-    autocomplete="name"
->
-
-<div class="error" id="nameError">
-Please enter your name.
-</div>
-
-</div>
+    </section>
 
 
-<!-- AGE -->
+    <!-- RIGHT SIDE -->
 
-<div class="input-group">
+    <section class="right">
 
-<label for="age">
-How old are you?
-</label>
+        <h2>
+            Let's start learning.
+        </h2>
 
-<input
-    type="number"
-    id="age"
-    placeholder="Enter your age"
-    min="5"
-    max="25"
->
-
-<div class="error" id="ageError">
-Please enter a valid age.
-</div>
-
-</div>
+        <p class="subtitle">
+            Tell us a little about yourself to personalise
+            your Steadynet learning experience.
+        </p>
 
 
-<!-- CLASS -->
-
-<div class="input-group">
-
-<label for="class">
-Which class are you in?
-</label>
-
-<select id="class">
-
-<option value="">
-Select your class
-</option>
-
-<option value="5">Class 5</option>
-<option value="6">Class 6</option>
-<option value="7">Class 7</option>
-<option value="8">Class 8</option>
-<option value="9">Class 9</option>
-<option value="10">Class 10</option>
-
-</select>
-
-<div class="error" id="classError">
-Please select your class.
-</div>
-
-</div>
+        <div class="error" id="error">
+            Please fill in all the details.
+        </div>
 
 
-<button type="submit" class="continue">
-Continue →
-</button>
+        <form id="startForm">
 
-<p class="note">
-Your information is saved only on this device.
-</p>
+            <div class="form-group">
 
-</form>
+                <label for="name">
+                    What is your name?
+                </label>
 
-</section>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                >
 
-</div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="age">
+                    How old are you?
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Enter your age"
+                    min="5"
+                    max="25"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="studentClass">
+                    Which class are you in?
+                </label>
+
+                <select id="studentClass">
+
+                    <option value="">
+                        Select your class
+                    </option>
+
+                    <option value="5">Class 5</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="start-btn"
+            >
+                Let's Start Learning
+            </button>
+
+        </form>
+
+
+        <p class="note">
+            Your information is saved only on this device.
+        </p>
+
+    </section>
 
 </div>
 
 
 <script>
 
-const form = document.getElementById("welcomeForm");
+const form =
+    document.getElementById("startForm");
+
+const error =
+    document.getElementById("error");
+
 
 form.addEventListener("submit", function(event){
 
     event.preventDefault();
 
+
     const name =
-        document.getElementById("name").value.trim();
+        document.getElementById("name")
+        .value.trim();
 
     const age =
-        document.getElementById("age").value;
+        document.getElementById("age")
+        .value.trim();
 
     const studentClass =
-        document.getElementById("class").value;
+        document.getElementById("studentClass")
+        .value;
 
 
-    let valid = true;
+    if(
+        name === "" ||
+        age === "" ||
+        studentClass === ""
+    ){
 
+        error.style.display = "block";
 
-    /* NAME */
-
-    if(name === ""){
-
-        document.getElementById("nameError").style.display="block";
-
-        valid = false;
-
-    }else{
-
-        document.getElementById("nameError").style.display="none";
+        return;
 
     }
 
 
-    /* AGE */
+    if(
+        Number(age) < 5 ||
+        Number(age) > 25
+    ){
 
-    if(age === "" || age < 5 || age > 25){
+        error.innerText =
+            "Please enter a valid age.";
 
-        document.getElementById("ageError").style.display="block";
+        error.style.display = "block";
 
-        valid = false;
-
-    }else{
-
-        document.getElementById("ageError").style.display="none";
-
-    }
-
-
-    /* CLASS */
-
-    if(studentClass === ""){
-
-        document.getElementById("classError").style.display="block";
-
-        valid = false;
-
-    }else{
-
-        document.getElementById("classError").style.display="none";
+        return;
 
     }
 
 
-    /* SAVE */
+    /* SAVE USER PROFILE */
 
-    if(valid){
+    localStorage.setItem(
+        "steadynetName",
+        name
+    );
 
-        localStorage.setItem(
-            "steadynetName",
-            name
-        );
+    localStorage.setItem(
+        "steadynetAge",
+        age
+    );
 
-        localStorage.setItem(
-            "steadynetAge",
-            age
-        );
+    localStorage.setItem(
+        "steadynetClass",
+        studentClass
+    );
 
-        localStorage.setItem(
-            "steadynetClass",
-            studentClass
-        );
 
-        /*
-        Change this page name if your dashboard
-        has a different filename.
-        */
+    /* GO TO DASHBOARD */
 
-        window.location.href = "dashboard.html";
-
-    }
+    window.location.href =
+        "dashboard.html";
 
 });
 
