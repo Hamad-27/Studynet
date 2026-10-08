@@ -1018,31 +1018,519 @@ Earn more by completing lessons.
 
 <script>
 
-/* ================= USER PROFILE ================= */
+/* =========================================
+   STEADYNET REAL PROGRESS SYSTEM
+   ========================================= */
 
 const savedName = localStorage.getItem("steadynetName");
+const savedClass = localStorage.getItem("steadynetClass");
 
-if(savedName){
+/* ---------- USER NAME ---------- */
 
+if (savedName) {
     document.getElementById("welcomeText").innerText =
         "Welcome back, " + savedName + ".";
 
     document.getElementById("navProfile").innerText =
         savedName.charAt(0).toUpperCase();
+}
+
+
+/* =========================================
+   CREATE STUDY DATA
+   ========================================= */
+
+let studyData = JSON.parse(
+    localStorage.getItem("steadynetProgress")
+) || {
+
+    lessonsCompleted: 0,
+
+    questionsAnswered: 0,
+
+    learningPoints: 0,
+
+    streak: 0,
+
+    lastStudyDate: null,
+
+    subjects: {
+        science: 0,
+        maths: 0,
+        english: 0,
+        social: 0
+    },
+
+    activityDates: []
+
+};
+
+
+/* =========================================
+   SAVE DATA
+   ========================================= */
+
+function saveStudyData() {
+
+    localStorage.setItem(
+        "steadynetProgress",
+        JSON.stringify(studyData)
+    );
 
 }
 
 
-/* ================= DEMO PROFILE ================= */
+/* =========================================
+   DATE
+   ========================================= */
+
+function todayDate() {
+
+    const date = new Date();
+
+    return date.getFullYear() + "-" +
+        String(date.getMonth() + 1).padStart(2, "0") + "-" +
+        String(date.getDate()).padStart(2, "0");
+
+}
+
+
+/* =========================================
+   REGISTER TODAY'S ACTIVITY
+   ========================================= */
+
+function registerActivity() {
+
+    const today = todayDate();
+
+    if (!studyData.activityDates.includes(today)) {
+
+        studyData.activityDates.push(today);
+
+    }
+
+    updateStreak();
+
+    saveStudyData();
+
+}
+
+
+/* =========================================
+   CALCULATE REAL STREAK
+   ========================================= */
+
+function updateStreak() {
+
+    const dates = studyData.activityDates
+        .sort()
+        .reverse();
+
+    if (dates.length === 0) {
+
+        studyData.streak = 0;
+
+        return;
+
+    }
+
+    const today = new Date(todayDate());
+
+    const latest = new Date(dates[0]);
+
+    const difference =
+        Math.floor(
+            (today - latest) /
+            (1000 * 60 * 60 * 24)
+        );
+
+    /* If user has not studied today or yesterday,
+       streak is broken */
+
+    if (difference > 1) {
+
+        studyData.streak = 0;
+
+        return;
+
+    }
+
+    let streak = 1;
+
+    for (let i = 0; i < dates.length - 1; i++) {
+
+        const current =
+            new Date(dates[i]);
+
+        const previous =
+            new Date(dates[i + 1]);
+
+        const gap =
+            Math.floor(
+                (current - previous) /
+                (1000 * 60 * 60 * 24)
+            );
+
+        if (gap === 1) {
+
+            streak++;
+
+        } else {
+
+            break;
+
+        }
+
+    }
+
+    studyData.streak = streak;
+
+}
+
+
+/* =========================================
+   COMPLETE LESSON
+   ========================================= */
+
+function completeLesson(subject) {
+
+    registerActivity();
+
+    studyData.lessonsCompleted++;
+
+    studyData.learningPoints += 100;
+
+    if (studyData.subjects[subject] !== undefined) {
+
+        studyData.subjects[subject] =
+            Math.min(
+                100,
+                studyData.subjects[subject] + 10
+            );
+
+    }
+
+    saveStudyData();
+
+    updateDashboard();
+
+}
+
+
+/* =========================================
+   ANSWER QUESTION
+   ========================================= */
+
+function answerQuestion(subject, correct = true) {
+
+    registerActivity();
+
+    studyData.questionsAnswered++;
+
+    if (correct) {
+
+        studyData.learningPoints += 10;
+
+        if (studyData.subjects[subject] !== undefined) {
+
+            studyData.subjects[subject] =
+                Math.min(
+                    100,
+                    studyData.subjects[subject] + 2
+                );
+
+        }
+
+    }
+
+    saveStudyData();
+
+    updateDashboard();
+
+}
+
+
+/* =========================================
+   UPDATE DASHBOARD
+   ========================================= */
+
+function updateDashboard() {
+
+    updateStreak();
+
+    /* CURRENT STREAK */
+
+    const streakNumber =
+        document.querySelector(".streak-number");
+
+    if (streakNumber) {
+
+        streakNumber.innerText =
+            studyData.streak;
+
+    }
+
+
+    /* LESSONS COMPLETED */
+
+    const stats =
+        document.querySelectorAll(".stat-number");
+
+    if (stats.length >= 3) {
+
+        stats[0].innerText =
+            studyData.lessonsCompleted;
+
+        stats[1].innerText =
+            studyData.questionsAnswered;
+
+        stats[2].innerText =
+            studyData.learningPoints.toLocaleString();
+
+    }
+
+
+    /* SUBJECT PROGRESS */
+
+    const subjects =
+        document.querySelectorAll(".subject");
+
+    subjects.forEach(subject => {
+
+        const title =
+            subject.querySelector("h3");
+
+        const progress =
+            subject.querySelector(
+                ".subject-progress span"
+            );
+
+        if (!title || !progress) return;
+
+        let subjectName =
+            title.innerText.toLowerCase();
+
+        let key = null;
+
+        if (subjectName.includes("science") &&
+            !subjectName.includes("social")) {
+
+            key = "science";
+
+        }
+
+        else if (subjectName.includes("mathematics")) {
+
+            key = "maths";
+
+        }
+
+        else if (subjectName.includes("english")) {
+
+            key = "english";
+
+        }
+
+        else if (subjectName.includes("social")) {
+
+            key = "social";
+
+        }
+
+        if (key && studyData.subjects[key] !== undefined) {
+
+            progress.style.width =
+                studyData.subjects[key] + "%";
+
+        }
+
+    });
+
+
+    /* LESSON PROGRESS */
+
+    const lessonBars =
+        document.querySelectorAll(".lesson-bar span");
+
+    const lessonPercentages =
+        document.querySelectorAll(".lesson-percent");
+
+    lessonBars.forEach((bar, index) => {
+
+        const lessonProgress =
+            index === 0
+                ? studyData.subjects.science
+                : studyData.subjects.english;
+
+        bar.style.width =
+            lessonProgress + "%";
+
+        if (lessonPercentages[index]) {
+
+            lessonPercentages[index].innerText =
+                lessonProgress + "%";
+
+        }
+
+    });
+
+
+    saveStudyData();
+
+}
+
+
+/* =========================================
+   STREAK DAYS DISPLAY
+   ========================================= */
+
+function updateStreakDays() {
+
+    const days =
+        document.querySelectorAll(".streak-days .day");
+
+    if (!days.length) return;
+
+    const today =
+        new Date();
+
+    const dayNumber =
+        today.getDay();
+
+    days.forEach((day, index) => {
+
+        day.classList.remove("active");
+
+    });
+
+    /*
+       Show active days based on recent
+       study activity.
+    */
+
+    const activityCount =
+        Math.min(
+            studyData.streak,
+            7
+        );
+
+    for (
+        let i = 0;
+        i < activityCount;
+        i++
+    ) {
+
+        const position =
+            (dayNumber - i + 7) % 7;
+
+        if (days[position]) {
+
+            days[position].classList.add("active");
+
+        }
+
+    }
+
+}
+
+
+/* =========================================
+   START DASHBOARD
+   ========================================= */
+
+updateStreak();
+
+updateDashboard();
+
+updateStreakDays();
+
+
+/* =========================================
+   MAKE DASHBOARD CLICKABLE
+   ========================================= */
+
 /*
-If you want to test the personalized welcome,
-open the browser console and run:
-
-localStorage.setItem("steadynetName","Hameed");
-
-Then refresh the page.
+   Double-clicking a subject card while testing
+   will add 10% progress.
 */
 
+document.querySelectorAll(".subject")
+.forEach(card => {
+
+    card.addEventListener(
+        "dblclick",
+        function() {
+
+            const title =
+                this.querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+            let subject = null;
+
+            if (
+                title.includes("science") &&
+                !title.includes("social")
+            ) {
+
+                subject = "science";
+
+            }
+
+            else if (
+                title.includes("mathematics")
+            ) {
+
+                subject = "maths";
+
+            }
+
+            else if (
+                title.includes("english")
+            ) {
+
+                subject = "english";
+
+            }
+
+            else if (
+                title.includes("social")
+            ) {
+
+                subject = "social";
+
+            }
+
+            if (subject) {
+
+                completeLesson(subject);
+
+                alert(
+                    "Lesson completed! +100 learning points"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   DAILY ACTIVITY
+   ========================================= */
+
+/*
+   Opening the dashboard counts as study activity.
+   This means the streak can start automatically.
+*/
+
+registerActivity();
+
+updateDashboard();
+
+updateStreakDays();
 
 </script>
 
